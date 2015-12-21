@@ -124,9 +124,7 @@
 
 <!-- after diceware-->
 
-
-<div id="p1"></div>
-<div id="p2"></div>
+<div id="passdiv" type="text"></div><div id="p1"></div><div id="p2"></div>
 <div id="p3"></div>
 <div id="p4"></div>
 <div id="p5"></div>
@@ -7918,21 +7916,36 @@ var values = {
 }
 </script>
 
-<p>Please put 5 numbers in each of the input fields below. At least six input fields must be completed for you to generate a sufficiently strong password.</br></br>
+<p>Please put 5 numbers in each of the input fields below. At least six input fields must be completed for you to generate a sufficiently strong password.<br><br>
 
-Please only use numbers chosen by rolling dice. Any other methods may lack sufficient randomness to produce good passwords.</br></br>
+Please only use numbers chosen by rolling dice. Any other methods may lack sufficient randomness to produce good passwords.<br><br>
 
-For more information on the diceware method you can visit FIX THIS LINK: <a href="http://wwwfmcorey.com">Thewebsitehere</a> 
+For more information on the diceware method you can read more about it here:<br>
+<br>
+<a href="https://theintercept.com/2015/03/26/passphrases-can-memorize-attackers-cant-guess/">The Intercept</a> - An in-depth overview on the reasoning behind Diceware.
+<br>
+<a href="http://arstechnica.com/information-technology/2014/03/diceware-passwords-now-need-six-random-words-to-thwart-hackers/">ArsTechnica</a> - An article about the need for at <strong>least</strong> 6 word diceware passphrases. 
+<br><br>
+
+Please also remember to use a password manager. You can get a well documented, open, and free password manager from the following sources:
+<br><br>
+Windows: <a href="http://keepass.info">keepass.info</a>
+<br>
+Mac OSX and Linux: <a href="http://keepassx.org">keepass.org</a>
 </p>
+
+<div id="input_center">
 <input id="input1" type="text" maxlength="5"/>
 <input id="input2" type="text" maxlength="5"/>
-<input id="input3" type="text" maxlength="5"/>
+<input id="input3" type="text" maxlength="5"/><br></div>
+<div id="input_center">
 <input id="input4" type="text" maxlength="5"/>
 <input id="input5" type="text" maxlength="5"/>
-<input id="input6" type="text" maxlength="5"/>
+<input id="input6" type="text" maxlength="5"/><br></div>
+<div id="input_center">
 <input id="input7" type="text" maxlength="5"/>
 <input id="input8" type="text" maxlength="5"/>
-<input id="input9" type="text" maxlength="5"/>
+<input id="input9" type="text" maxlength="5"/></div>
 
 <a href="#" class="myButton" onclick="choice_lookup()">Generate Passwords</a>
 
@@ -7942,11 +7955,14 @@ For more information on the diceware method you can visit FIX THIS LINK: <a href
 var input_array=['input1','input2','input3','input4','input5','input6','input7','input8','input9']
 var p_array=['p1','p2','p3','p4','p5','p6','p7','p8','p9']
 function choice_lookup(){
+  var passcontent = "This is your new password:";
+  var passdiv = document.getElementById("passdiv");
+  passdiv.innerHTML = passcontent;
   for (i=0; i<10; i++) {
     var choice=document.getElementById(input_array[i]).value;
     document.getElementById(p_array[i]).innerHTML = values[choice];
-}
-}
+    };
+};
 </script>
 
 </body>

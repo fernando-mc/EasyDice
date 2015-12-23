@@ -124,7 +124,11 @@
 
 <!-- after diceware-->
 
-<div id="passdiv" type="text"></div><div id="p1"></div><div id="p2"></div>
+<div id="finalpass" type=text>finalpass-div</div>
+<div id="passdiv" type="text">passdiv-div</div>
+
+<div id="p1"></div>
+<div id="p2"></div>
 <div id="p3"></div>
 <div id="p4"></div>
 <div id="p5"></div>
@@ -7954,13 +7958,18 @@ Mac OSX and Linux: <a href="http://keepassx.org">keepass.org</a>
 
 var input_array=['input1','input2','input3','input4','input5','input6','input7','input8','input9']
 var p_array=['p1','p2','p3','p4','p5','p6','p7','p8','p9']
+var password = ""
+var passcontent = "This is your new password:";
+
 function choice_lookup(){
-  var passcontent = "This is your new password:";
-  var passdiv = document.getElementById("passdiv");
+  var passdiv = document.getElementById("finalpass");
   passdiv.innerHTML = passcontent;
   for (i=0; i<10; i++) {
+    // Gets the value of the input1 through input9 and stores it as choice//
     var choice=document.getElementById(input_array[i]).value;
-    document.getElementById(p_array[i]).innerHTML = values[choice];
+    // Creates a string with the full password and sets the value on the page//
+    password += (values[choice] || '') + " "
+    document.getElementById("passdiv").innerHTML = password;
     };
 };
 </script>

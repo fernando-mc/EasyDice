@@ -5,7 +5,6 @@
 
 <meta charset="utf-8"/>
 
-<!-- This is to center the inputs in the input divs-->
 <style>
 body {
     margin: 0;
@@ -17,12 +16,24 @@ div {
     width: 80%;
 }
 
+/* Styles all the input fields*/
 input {
-    margin: auto;
-    width: 20%;
-    border: 1px solid #73AD21;
-    padding: 10px;
+    border:2px solid #456879;
+    border-radius:10px;
+    height: 22px;
+    width: 100px;
+    margin: 3px;
 }
+
+.myButton {
+    padding: 10px;
+    background-color: #B41B1B;
+    color: white;
+    border-radius: 10px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+	
+}	
 
 </style>
 
@@ -7955,20 +7966,17 @@ Windows: <a href="http://keepass.info">keepass.info</a>
 Mac OSX and Linux: <a href="http://keepassx.org">keepass.org</a>
 </p>
 
-<div id="input_center">
 <input id="input1" type="text" maxlength="5"/>
 <input id="input2" type="text" maxlength="5"/>
-<input id="input3" type="text" maxlength="5"/><br></div>
-<div id="input_center">
+<input id="input3" type="text" maxlength="5"/>
 <input id="input4" type="text" maxlength="5"/>
 <input id="input5" type="text" maxlength="5"/>
-<input id="input6" type="text" maxlength="5"/><br></div>
-<div id="input_center">
+<input id="input6" type="text" maxlength="5"/>
 <input id="input7" type="text" maxlength="5"/>
 <input id="input8" type="text" maxlength="5"/>
-<input id="input9" type="text" maxlength="5"/></div>
+<input id="input9" type="text" maxlength="5"/>
 
-<a href="#" class="myButton" onclick="choice_lookup()">Generate Passwords</a>
+<a class="myButton" onclick="choice_lookup()">Generate Passwords</a>
 
 <script type="text/javascript">
 

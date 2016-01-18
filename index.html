@@ -14,22 +14,43 @@
 <meta charset="utf-8"/>
 
 <style>
-body {
-    margin: 0;
-    padding: 0;
+.maindiv {
+    width: 95%;
+    margin: 0 auto;
 }
+
+.moreinfo-div {
+    width: 95%;
+    margin: 0 auto;
+}
+
+#explain_div {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#password_div {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#error_div {
+  height: 60px;
+  width: 95%;
+  margin: 0 auto;
+}
+
 
 div {
     position: center;
     width: 100%;
 }
 
-/* Styles all the input fields*/
 input {
-    border:2px solid #456879;
-    border-radius:10px;
-    height: 22px;
-    width: 100px;
+    border:2px solid white;
+    border-radius: 5px;
+    height: 30px;
+    width: 110px;
     margin: 3px;
 }
 
@@ -40,8 +61,16 @@ input {
     border-radius: 10px;
     font-family: Helvetica, sans-serif;
     font-weight: bold;
-	
-}	
+  
+} 
+
+.myButton:hover {
+  background-color: transparent;
+  color: #B41B1B;
+  border-style: solid;
+  border-color: #B41B1B;
+  text-decoration: none;
+}
 
 .headerbox {
     background-color: #B41B1B;
@@ -56,6 +85,7 @@ h1.header {
     color: white;
 }
 
+
 p.header {
     margin: 20px auto 0;
     text-align: center;
@@ -64,6 +94,16 @@ p.header {
     letter-spacing: 10px;
 }
 
+hr {
+  width: 60%;
+}
+
+.well {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  width: 95%;
+
+}
 
 
 
@@ -72,19 +112,37 @@ p.header {
 </style>
 
 </head>
-<body>
 
+<body>
 
 <div class="headerbox">
     <h1 class="header">EasyDice</h2>
     <p class="header">diceware password generator</p>
 </div>
 
+<div class="maindiv">
 
-<p>Please put 5 numbers in each of the input fields below. <strong>At least six input fields must be completed for you to generate a sufficiently strong password.</strong><br><br>
+<h2>About Diceware</h2>
+<hr align="left">
+<p>Diceware is a password creation system that forms a password using dice to select words at random from a lengthy word list. A sample Diceware wordlist contains 7776 words. So, for every truly random selection from this list the number of possible passwords (we'll call this "n") will equal 7776^n.</p>
+<p>Diceware is a great method to use for creating a secure, yet easy to memorize, master password for accounts such as your computer, password manager, and email.</p>
 
-Only choose numbers by rolling dice. Any other methods may lack sufficient randomness to produce good passwords.<br></p>
+<h2>Instructions</h2>
+<hr align="left">
+<ul>
+  <li>Put five numbers in each of the boxes below.</li>
+  <li>At least six boxes must be completed for you to generate a sufficiently strong password.</li>
+  <li>None of the individual numbers that you use can be higher than the number 6. That means the highest number any box can hold is 66666. In other words, you cannot use the numbers 7, 8, or 9.</li>
+  <li>Only choose numbers by rolling dice. Any other methods may lack sufficient randomness to produce good passwords.</li>
+  <li>Please note that the password produced by the generator will contain spaces and that in general, password managers will accept spaces in passwords.</li>
+</ul>
 
+<br>
+
+</div>
+
+<center>
+<div class="well well-lg">
 
 <input id="input1" type="text" maxlength="5"/>
 <input id="input2" type="text" maxlength="5"/>
@@ -96,11 +154,16 @@ Only choose numbers by rolling dice. Any other methods may lack sufficient rando
 <input id="input8" type="text" maxlength="5"/>
 <input id="input9" type="text" maxlength="5"/>
 
-<a class="myButton" onclick="generate_password()">Generate Password</a><br>
+</div>
 
-<div id="explain_div" type=text style="padding: 20px 0px 0px 0px"></div><br>
+<a class="myButton" onclick="generate_password()">Generate Password</a><br></center>
+
+<div id="explain_div" type=text style=""></div><br>
+<div id="error_div"></div><br>
 <div id="password_div" type="text"></div><br>
 
+
+<div class="moreinfo-div">
 
 <p>More information on passwords and the diceware method:<br>
 <br>
@@ -117,20 +180,25 @@ Windows: <a href="http://keepass.info">keepass.info</a>
 Mac OSX and Linux: <a href="http://keepassx.org">keepass.org</a>
 </p>
 
+</div>
 
 <script type="text/javascript">
 
 var input_array=['input1','input2','input3','input4','input5','input6','input7','input8','input9'];
 
 function set_error_message(){
-  error = "Error: Please make sure to include five digits in at least 6 input boxes!";
-  document.getElementById("explain_div").innerHTML = error;
+  document.getElementById("explain_div").innerHTML = "";
+  error = "Error: Please make sure to include five digits in at least six input boxes!";
+  document.getElementById("error_div").innerHTML = error;
 }
 
 function set_password_explaination(){
+  document.getElementById("error_div").innerHTML = "";
   explaination = "This is your new password:"
   document.getElementById("explain_div").innerHTML = explaination;
 };
+
+
 
 function check_inputs(){
   var input_array=['input1','input2','input3','input4','input5','input6','input7','input8','input9'];

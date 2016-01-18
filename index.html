@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -8,6 +10,7 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 <html>
 <head>
 
@@ -21,23 +24,20 @@
 
 .moreinfo-div {
     width: 95%;
-    margin: 0 auto;
+    margin: 0 auto 40px;
 }
 
-#explain_div {
-  width: 95%;
-  margin: 0 auto;
-}
 
 #password_div {
-  width: 95%;
-  margin: 0 auto;
+height: 10%;
+width: 80%;
+font-size: 2em;
 }
 
 #error_div {
-  height: 60px;
-  width: 95%;
-  margin: 0 auto;
+  height: 10%;
+  width: 80%;
+  font-size: 2em;
 }
 
 
@@ -56,6 +56,7 @@ input {
 
 .myButton {
     padding: 10px;
+    margin-bottom: 20px;
     background-color: #B41B1B;
     color: white;
     border-radius: 10px;
@@ -78,6 +79,10 @@ input {
     height: 140px;
 }
 
+.btn {
+  width: 20%;
+}
+
 h1.header {
     padding-top: 40px;
     margin: 0 auto;
@@ -94,13 +99,17 @@ p.header {
     letter-spacing: 10px;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 hr {
   width: 60%;
 }
 
-.well {
+.well-lg {
   margin-top: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   width: 95%;
 
 }
@@ -156,29 +165,32 @@ hr {
 
 </div>
 
-<a class="myButton" onclick="generate_password()">Generate Password</a><br></center>
+<div id="error_div" class="alert alert-danger" role="alert"></div>
+<div id="password_div" class="well" role="alert" type="text"></div><br>
 
-<div id="explain_div" type=text style=""></div><br>
-<div id="error_div"></div><br>
-<div id="password_div" type="text"></div><br>
+<a class="myButton" onclick="generate_password()">Generate Password</a><br>
 
+
+
+</center>
 
 <div class="moreinfo-div">
 
-<p>More information on passwords and the diceware method:<br>
-<br>
-<a href="http://www.fmcorey.com/?p=551">My website (fmcorey.com)</a> - An overview of Diceware in comparison to other proported password creation schemes.<br>
-<a href="https://theintercept.com/2015/03/26/passphrases-can-memorize-attackers-cant-guess/">The Intercept</a> - An in-depth overview on the reasoning behind Diceware.
-<br>
-<a href="http://arstechnica.com/information-technology/2014/03/diceware-passwords-now-need-six-random-words-to-thwart-hackers/">ArsTechnica</a> - An article about the need for at <strong>least</strong> 6 word diceware passphrases. 
-<br><br>
+<h2>More Information</h2>
+<hr align="left">
 
-Please also remember to use a password manager. You can get a free and open password manager from the following sources:
+<h5><a href="http://www.fmcorey.com/?p=551">My website: </a>An overview of Diceware in comparison to other proported password creation schemes.</h5>
+
+<h5><a href="https://theintercept.com/2015/03/26/passphrases-can-memorize-attackers-cant-guess/">The Intercept: </a>An in-depth overview on the reasoning behind Diceware.</h5>
+
+<h5><a href="http://arstechnica.com/information-technology/2014/03/diceware-passwords-now-need-six-random-words-to-thwart-hackers/">ArsTechnica: </a>An explanation about the need for at <strong>least</strong> 6 word diceware passphrases.</h5>
+
 <br>
-Windows: <a href="http://keepass.info">keepass.info</a>
-<br>
-Mac OSX and Linux: <a href="http://keepassx.org">keepass.org</a>
-</p>
+
+<h4>Please also remember to use a password manager. You can download a free, open-source password manager from the following sources:</h4>
+<hr align="left">
+<h5><a href="http://keepass.info">keepass.info: </a>Windows</h5>
+<h5><a href="http://keepassx.org">keepass.org: </a>Mac OSX and Linux</h5>
 
 </div>
 
@@ -186,18 +198,16 @@ Mac OSX and Linux: <a href="http://keepassx.org">keepass.org</a>
 
 var input_array=['input1','input2','input3','input4','input5','input6','input7','input8','input9'];
 
+error_div.style.display = 'none';
+password_div.style.display = 'none';
+
 function set_error_message(){
-  document.getElementById("explain_div").innerHTML = "";
-  error = "Error: Please make sure to include five digits in at least six input boxes!";
+  error_div.style.display = 'block';
+  password_div.style.display = 'none';
+  document.getElementById("password_div").innerHTML = "";
+  error = "<strong>Error</strong>: Please make sure to include five digits in at least six of the boxes!";
   document.getElementById("error_div").innerHTML = error;
 }
-
-function set_password_explaination(){
-  document.getElementById("error_div").innerHTML = "";
-  explaination = "This is your new password:"
-  document.getElementById("explain_div").innerHTML = explaination;
-};
-
 
 
 function check_inputs(){
@@ -218,7 +228,8 @@ function check_inputs(){
 
 
 function input_to_password(){
-
+  error_div.style.display = 'none';
+  password_div.style.display = 'block';
   var password = ""
   choice = ""
   for (i=0; i<9; i++) {
@@ -226,7 +237,7 @@ function input_to_password(){
     var choice=document.getElementById(input_array[i]).value;
     // Creates a string with the full password and sets the value on the page//
     password += (wordlist[choice] || '') + " ";
-    document.getElementById("password_div").innerHTML = password;
+    document.getElementById("password_div").innerHTML = "<strong>This is your new password</strong>: " + password;
     }
 };
 
@@ -239,7 +250,6 @@ function clear_password(){
 function generate_password(){
   if (check_inputs()){
     clear_password();
-    set_password_explaination();
     input_to_password();
   } else {
     set_error_message();
